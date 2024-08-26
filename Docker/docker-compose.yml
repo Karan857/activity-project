@@ -1,29 +1,15 @@
-version: "3.8"
-
+version: '3'
 services:
-  mysql:
-    build:
-      context: .
-      dockerfile: Dockerfile  # Build using the custom Dockerfile
+  app:
+    build: .
     ports:
-      - "3333:3306"
+      - "3000:3000"
     environment:
-      MYSQL_ROOT_PASSWORD: itnpru6438@
-      MYSQL_DATABASE: activitydb
-      MYSQL_USER: itnpru6438
-      MYSQL_PASSWORD: itnpru6438@
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: always
+      - NODE_ENV=production
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
     ports:
-      - "8081:80"
-    environment:
-      PMA_HOST: mysql
-      MYSQL_ROOT_PASSWORD: itnpru6438@
-
-volumes:
-  mysql_data:
-    driver: local
+      - "3306:3306"
