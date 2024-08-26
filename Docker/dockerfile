@@ -8,4 +8,4 @@ ENV MYSQL_USER=itnpru6438
 ENV MYSQL_PASSWORD=itnpru6438@
 
 # กำหนดพอร์ตที่ MySQL จะทำงาน
-EXPOSE 3306
+EXPOSE 3333
