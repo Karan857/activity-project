@@ -1,18 +1,5 @@
-# เลือก image base ที่ใช้
-FROM node:18-alpine
+# You can change this to a newer version of MySQL available at
+# https://hub.docker.com/r/mysql/mysql-server/tags/
+FROM mysql/mysql-server:8.0.24
 
-# ตั้ง working directory
-WORKDIR /app
-
-# Copy ไฟล์ package.json และ package-lock.json และติดตั้ง dependencies
-COPY package*.json ./
-RUN npm install
-
-# Copy source code ทั้งหมด
-COPY . .
-
-# ระบุพอร์ตที่แอปพลิเคชันจะใช้
-EXPOSE 3000
-
-# คำสั่งเริ่มต้นในการรันแอปพลิเคชัน
-CMD ["npm", "start"]
+COPY config/user.cnf /etc/mysql/my.cnf
