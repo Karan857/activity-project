@@ -1,5 +1,8 @@
-# You can change this to a newer version of MySQL available at
-# https://hub.docker.com/r/mysql/mysql-server/tags/
-FROM mysql/mysql-server:8.0.24
+FROM mysql:latest
 
-COPY config/user.cnf /etc/mysql/my.cnf
+ENV MYSQL_ROOT_PASSWORD your_root_password
+ENV MYSQL_DATABASE your_database
+ENV MYSQL_USER your_user
+ENV MYSQL_PASSWORD your_password
+
+EXPOSE 3306
