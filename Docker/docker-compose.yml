@@ -2,24 +2,26 @@ version: "3.8"
 
 services:
   mysql:
-    image: mysql:5.7
+    build:
+      context: .
+      dockerfile: Dockerfile  # Build using the custom Dockerfile
     ports:
-      - "3333:3306"  # Exposing MySQL on port 3333
+      - "3333:3306"
     environment:
       MYSQL_ROOT_PASSWORD: itnpru6438@
       MYSQL_DATABASE: activitydb
       MYSQL_USER: itnpru6438
       MYSQL_PASSWORD: itnpru6438@
     volumes:
-      - mysql_data:/var/lib/mysql  # กำหนด volume เพื่อเก็บข้อมูลถาวร
+      - mysql_data:/var/lib/mysql
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin  # ใช้ image ของ phpMyAdmin
+    image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - "8081:80"  # Access phpMyAdmin via http://localhost:8081
+      - "8081:80"
     environment:
-      PMA_HOST: mysql  # ตั้งค่าให้เชื่อมต่อกับ MySQL service
+      PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: itnpru6438@
 
 volumes:
